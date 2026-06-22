@@ -1,0 +1,98 @@
+# Секреты и локальные настройки — никогда не коммитить
+.env
+.env.local
+.env.*
+.env.*.local
+*.pem
+*.key
+
+# Но шаблоны переменных окружения — наоборот, держим в git (без секретов внутри).
+!.env.example
+!.env.*.example
+
+# Локальные настройки Claude Code (личные, не для git).
+# Пример settings.local.json.example НЕ игнорируется — он остаётся в git как образец.
+.claude/settings.local.json
+
+# .business/ — приватный бизнес-контекст, заполнен реальными данными при онбординге.
+# Не должен попадать в репозиторий.
+.business/
+
+# Xcode / Swift
+.build/
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+.swiftpm/
+Packages/
+*.moved-aside
+
+# Зависимости (Node)
+node_modules/
+.pnpm-store/
+.yarn/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+
+# Сборки
+.next/
+dist/
+build/
+out/
+
+# Системные
+.DS_Store
+Thumbs.db
+
+# Редакторы
+.idea/
+*.swp
+*.swo
+
+# Логи
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+
+# Тесты и кэши
+.cache/
+coverage/
+.nyc_output/
+.vitest-cache/
+
+# Playwright
+playwright-report/
+test-results/
+
+# report-kit — генерируемые PDF и временный файл рендера.
+# Исходники (css/html/mjs/fonts) держим в git; собранные отчёты — нет.
+templates/report-kit/*.pdf
+templates/report-kit/.render-*.html
+
+# --- Личное окружение Claude Code: на диске остаётся, в этот публичный репозиторий НЕ публикуем.
+.claude/
+.githooks/
+.vscode/
+.mcp.json.example
+.env.example
+tools/
+docs/
+prompts/
+templates/
+plans/
+retrospectives/
+CLAUDE.md
+ONBOARDING.md
+TROUBLESHOOTING.md
+IMPROVEMENTS.md
+HELLO.md
+CHANGELOG.md
