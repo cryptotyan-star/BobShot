@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eef0f2"/>
+    </linearGradient>
+  </defs>
+  <!-- macOS-стиль: скруглённый квадрат, мягкий белый фон -->
+  <rect width="1024" height="1024" rx="228" fill="url(#bg)"/>
+  <!-- Фотоаппарат: чёрный силуэт по центру -->
+  <g fill="#0b0b0c">
+    <rect x="430" y="300" width="164" height="82" rx="26"/>
+    <rect x="272" y="356" width="480" height="324" rx="72"/>
+  </g>
+  <!-- Объектив -->
+  <circle cx="512" cy="524" r="122" fill="#ffffff"/>
+  <circle cx="512" cy="524" r="94" fill="#0b0b0c"/>
+  <circle cx="476" cy="488" r="24" fill="#ffffff"/>
+  <!-- Вспышка -->
+  <circle cx="690" cy="416" r="20" fill="#ffffff"/>
+</svg>

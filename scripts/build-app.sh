@@ -26,6 +26,11 @@ mkdir -p "$APP_DIR/Contents/Resources"
 cp "$BIN_PATH" "$APP_DIR/Contents/MacOS/BobShot"
 cp Resources/Info.plist "$APP_DIR/Contents/Info.plist"
 
+# Иконка приложения (Launchpad / Dock / Finder).
+if [ -f Resources/AppIcon.icns ]; then
+  cp Resources/AppIcon.icns "$APP_DIR/Contents/Resources/AppIcon.icns"
+fi
+
 # Иконки панели редактора (PNG из qlmanage) → в бандл.
 if [ -d Resources/icons/png ]; then
   mkdir -p "$APP_DIR/Contents/Resources/icons"

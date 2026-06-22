@@ -10,6 +10,8 @@
     <string>com.bobshot.app</string>
     <key>CFBundleExecutable</key>
     <string>BobShot</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
