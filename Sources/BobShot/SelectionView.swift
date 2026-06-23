@@ -295,16 +295,27 @@ final class SelectionView: NSView {
     override func keyDown(with event: NSEvent) {
         if event.keyCode == 53 { delegate?.selectionCancelled(); return } // Esc
         guard mode == .editing, let sel = selectionRect else { super.keyDown(with: event); return }
-        let cmd = event.modifierFlags.contains(.command)
-        let chars = event.charactersIgnoringModifiers?.lowercased()
-        if event.keyCode == 36 || event.keyCode == 76 { // Return / keypad Enter
+        if event.keyCode == 36 || event.keyCode == 76 { // Return / keypad Enter → копировать
             export(.copy, sel: sel)
-        } else if cmd && chars == "s" {
-            export(.save, sel: sel)
-        } else if cmd && chars == "z" {
-            undo()
         } else {
             super.keyDown(with: event)
+        }
+    }
+
+    /// ⌘-шорткаты AppKit доставляет сюда, а не в keyDown. Обрабатываем только в editing
+    /// и когда НЕ вводим текст — иначе ⌘C/⌘Z должны достаться текстовому редактору.
+    override func performKeyEquivalent(with event: NSEvent) -> Bool {
+        guard mode == .editing, activeText == nil, let sel = selectionRect,
+              event.modifierFlags.contains(.command) else {
+            return super.performKeyEquivalent(with: event)
+        }
+        // Матчим по keyCode (физическая клавиша), НЕ по символу: при русской раскладке
+        // ⌘C даёт «с» (кириллица), и сравнение с "c" не срабатывает. keyCode не зависит от раскладки.
+        switch event.keyCode {
+        case 8: export(.copy, sel: sel); return true   // C — «Скопировать этот скриншот»
+        case 1: export(.save, sel: sel); return true   // S — сохранить
+        case 6: undo();                  return true   // Z — отменить
+        default: return super.performKeyEquivalent(with: event)
         }
     }
 
